@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeonBoard | Smart Digital Billboards</title>
+    <title>Smart Digital Billboards | Transform City Skylines</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --electric-blue: #0ff0fc;
-            --magenta: #ff00ff;
-            --lime-green: #00ff00;
-            --dark-bg: #0a0a16;
-            --darker-bg: #050510;
-            --card-bg: rgba(15, 15, 35, 0.7);
-            --text-light: #f0f0f0;
-            --text-muted: #a0a0c0;
+            --primary: #2C3E50;
+            --secondary: #34495E;
+            --accent: #3498DB;
+            --accent-light: #5DADE2;
+            --light: #ECF0F1;
+            --dark: #1A252F;
+            --text: #2C3E50;
+            --white: #FFFFFF;
+            --gray: #95A5A6;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -29,45 +37,115 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
+            font-family: 'Poppins', Helvetica, Arial, sans-serif;
             line-height: 1.6;
+            color: var(--text);
+            background-color: var(--white);
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            color: var(--dark);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--secondary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
         }
 
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--spacing-md);
         }
 
         section {
-            padding: 100px 0;
+            padding: var(--spacing-xl) 0;
         }
 
-        /* Header & Navigation */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.3s ease;
-            background: rgba(10, 10, 22, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        header.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: var(--spacing-sm) 0;
         }
 
         .navbar {
@@ -77,294 +155,296 @@
         }
 
         .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--text-light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: var(--electric-blue);
-            text-shadow: 0 0 10px var(--electric-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
+            gap: var(--spacing-md);
         }
 
         .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
             position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--electric-blue);
-        }
-
-        .nav-links a::after {
+        .nav-links a:after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--electric-blue);
-            transition: width 0.3s ease;
+            background-color: var(--accent);
+            transition: var(--transition);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover:after {
             width: 100%;
         }
 
         .mobile-menu {
             display: none;
-            font-size: 24px;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(10, 10, 22, 0.9) 0%, rgba(5, 5, 16, 0.95) 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
-            opacity: 0.3;
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            padding-top: 80px;
         }
 
         .hero-content {
-            max-width: 800px;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.5s;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            background: linear-gradient(to right, var(--electric-blue), var(--magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        .hero-text {
+            animation: fadeIn 1s ease;
         }
 
-        .hero p {
+        .hero-text h1 {
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-text p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--text-muted);
+            margin-bottom: var(--spacing-lg);
+            color: var(--secondary);
         }
 
-        .cta-buttons {
+        .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: var(--spacing-sm);
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', sans-serif;
+        .hero-image {
             position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .billboard-img {
+            position: absolute;
+            width: 70%;
+            height: 50%;
+            background-color: var(--primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .img-1 {
+            top: 5%;
+            right: 5%;
+            background: linear-gradient(135deg, #2C3E50, #4A6491);
+            animation: float 6s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .img-2 {
+            top: 30%;
+            left: 5%;
+            background: linear-gradient(135deg, #34495E, #566573);
+            animation: float 7s ease-in-out infinite 1s;
+            z-index: 2;
+        }
+
+        .img-3 {
+            bottom: 10%;
+            right: 15%;
+            background: linear-gradient(135deg, #3498DB, #5DADE2);
+            animation: float 5s ease-in-out infinite 0.5s;
             z-index: 1;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--electric-blue), var(--lime-green));
-            color: var(--dark-bg);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--electric-blue);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        .billboard-img i {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
         /* About Section */
         .about {
-            background-color: var(--darker-bg);
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            display: inline-block;
-            color: var(--text-light);
-            position: relative;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--electric-blue), var(--magenta));
-            border-radius: 2px;
+            background-color: var(--light);
         }
 
         .about-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
             align-items: center;
-            gap: 50px;
         }
 
         .about-text {
-            flex: 1;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--text-muted);
-        }
-
-        .highlight {
-            color: var(--electric-blue);
-            font-weight: 600;
+            animation: fadeIn 1s ease;
         }
 
         .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease 0.3s both;
         }
 
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .city-placeholder {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--electric-blue), var(--magenta));
-            opacity: 0.3;
-            z-index: 1;
+            height: 300px;
+            background-color: var(--secondary);
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Features Section */
+        /* Features Section - Bento Layout */
         .features {
-            background-color: var(--dark-bg);
+            background-color: var(--white);
+            position: relative;
+            z-index: 1;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 20px;
+            height: 600px;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 30px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
             text-align: center;
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .feature-card::before {
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            height: 4px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
+        .feature-card:hover:before {
+            transform: scaleX(1);
         }
 
         .feature-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: var(--electric-blue);
-            text-shadow: 0 0 10px var(--electric-blue);
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: var(--spacing-sm);
         }
 
         .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
         }
 
-        .feature-card p {
-            color: var(--text-muted);
+        /* Bento grid positioning with highlighted layout */
+        .card-1 {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-2 {
+            grid-column: 3 / 5;
+            grid-row: 1 / 2;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-3 {
+            grid-column: 1 / 2;
+            grid-row: 2 / 4;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-4 {
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-5 {
+            grid-column: 4 / 5;
+            grid-row: 2 / 3;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-6 {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-7 {
+            grid-column: 3 / 5;
+            grid-row: 3 / 4;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
         }
 
         /* Comparison Section */
         .comparison {
-            background-color: var(--darker-bg);
+            background-color: var(--light);
+            position: relative;
+            z-index: 1;
         }
 
         .comparison-content {
@@ -373,244 +453,153 @@
         }
 
         .comparison-bars {
-            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
         }
 
         .comparison-item {
-            margin-bottom: 30px;
-        }
-
-        .comparison-label {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
 
-        .city {
-            font-weight: 600;
-        }
-
-        .vizag {
-            color: var(--electric-blue);
-        }
-
-        .hyderabad {
-            color: var(--magenta);
+        .city-name {
+            width: 120px;
+            font-weight: 500;
         }
 
         .bar-container {
+            flex: 1;
             height: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .bar {
             height: 100%;
-            border-radius: 15px;
-            position: relative;
-            width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: var(--white);
+            font-weight: 500;
             transition: width 1.5s ease;
         }
 
         .vizag-bar {
-            background: linear-gradient(to right, var(--electric-blue), rgba(0, 255, 255, 0.7));
-            box-shadow: 0 0 10px var(--electric-blue);
+            background-color: var(--accent);
+            width: 0;
         }
 
         .hyderabad-bar {
-            background: linear-gradient(to right, var(--magenta), rgba(255, 0, 255, 0.7));
-            box-shadow: 0 0 10px var(--magenta);
+            background-color: var(--secondary);
+            width: 0;
         }
 
-        .bar-value {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-weight: 600;
-            color: var(--text-light);
+        .percentage {
+            width: 50px;
+            text-align: right;
+            font-weight: 500;
         }
 
-        /* Contact Section */
-        .contact {
-            background-color: var(--dark-bg);
-        }
-
-        .contact-container {
-            display: flex;
-            gap: 50px;
-        }
-
+        /* Contact Info Section */
         .contact-info {
-            flex: 1;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: var(--electric-blue);
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            background-color: var(--light);
         }
 
         .contact-details {
-            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-md);
         }
 
         .contact-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 15px;
+            gap: var(--spacing-sm);
         }
 
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--electric-blue);
+            font-size: 2rem;
+            color: var(--accent);
         }
 
-        .contact-form {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            color: var(--text-light);
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--electric-blue);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-        }
-
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
+        .contact-text {
+            font-size: 1.2rem;
+            font-weight: 500;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(to right, var(--darker-bg), #0a0a1a);
-            padding: 60px 0 30px;
-            position: relative;
-            overflow: hidden;
+            background-color: var(--dark);
+            color: var(--white);
+            padding: var(--spacing-lg) 0;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
         }
 
-        .footer-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--text-light);
-            margin-bottom: 15px;
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.2rem;
         }
 
-        .footer-logo span {
-            color: var(--electric-blue);
-            text-shadow: 0 0 10px var(--electric-blue);
+        .footer-column p, .footer-column a {
+            color: var(--gray);
+            margin-bottom: var(--spacing-sm);
+            display: block;
         }
 
-        .footer-about {
-            max-width: 300px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
+        .footer-column a:hover {
+            color: var(--white);
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: var(--spacing-sm);
         }
 
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+        .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
         }
 
-        .social-link:hover {
-            background: var(--electric-blue);
-            color: var(--dark-bg);
+        .social-links a:hover {
+            background-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 0 15px var(--electric-blue);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 50px;
-        }
-
-        .footer-column h4 {
-            margin-bottom: 20px;
-            color: var(--electric-blue);
-            font-size: 1.2rem;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--electric-blue);
-            padding-left: 5px;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding-top: var(--spacing-md);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
+            color: var(--gray);
             font-size: 0.9rem;
         }
 
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -618,43 +607,73 @@
             }
         }
 
-        @keyframes glow {
+        @keyframes float {
             0% {
-                box-shadow: 0 0 5px var(--electric-blue);
+                transform: translateY(0px);
             }
             50% {
-                box-shadow: 0 0 20px var(--electric-blue), 0 0 30px var(--electric-blue);
+                transform: translateY(-15px);
             }
             100% {
-                box-shadow: 0 0 5px var(--electric-blue);
+                transform: translateY(0px);
             }
         }
 
-        /* Responsive Styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
+            h1 {
+                font-size: 3.5rem;
             }
             
-            .about-content {
-                flex-direction: column;
+            h2 {
+                font-size: 2.2rem;
             }
             
-            .contact-container {
-                flex-direction: column;
+            .hero-content, .about-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
             }
             
-            .footer-content {
-                flex-direction: column;
-                gap: 40px;
+            .hero-text, .about-text {
+                text-align: center;
             }
             
-            .footer-links {
-                gap: 30px;
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                height: auto;
+            }
+            
+            .card-1, .card-2, .card-3, .card-4, .card-5, .card-6, .card-7 {
+                grid-column: auto;
+                grid-row: auto;
             }
         }
 
         @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
             .nav-links {
                 display: none;
             }
@@ -663,68 +682,94 @@
                 display: block;
             }
             
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .cta-buttons {
+            .hero-buttons {
                 flex-direction: column;
-                gap: 15px;
+                align-items: center;
             }
             
             .btn {
                 width: 100%;
-                text-align: center;
+                max-width: 250px;
+            }
+            
+            section {
+                padding: var(--spacing-lg) 0;
             }
             
             .features-grid {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
             }
             
-            .footer-links {
+            .contact-details {
                 flex-direction: column;
-                gap: 30px;
+                gap: var(--spacing-md);
+            }
+            
+            .hero-image {
+                height: 400px;
+            }
+            
+            .billboard-img {
+                width: 60%;
+                height: 40%;
+            }
+            
+            .img-1 {
+                top: 10%;
+                right: 10%;
+            }
+            
+            .img-2 {
+                top: 35%;
+                left: 10%;
+            }
+            
+            .img-3 {
+                bottom: 15%;
+                right: 20%;
             }
         }
 
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            .section-title h2 {
-                font-size: 2rem;
+            h2 {
+                font-size: 1.5rem;
             }
             
-            section {
-                padding: 60px 0;
+            .container {
+                padding: 0 var(--spacing-sm);
             }
-        }
-
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+            
+            .feature-card {
+                padding: var(--spacing-md);
+            }
+            
+            .hero-image {
+                height: 350px;
+            }
+            
+            .billboard-img {
+                width: 70%;
+                height: 35%;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
+    <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Neon<span>Board</span></a>
+                <a href="#" class="logo">SmartBillboards</a>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#comparison">Comparison</a></li>
+                    <li><a href="#comparison">ROI</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="mobile-menu">
@@ -738,11 +783,29 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Transform City Skylines with Smart Digital Billboards</h1>
-                <p>Revolutionizing outdoor advertising in Visakhapatnam with cutting-edge digital hoardings that captivate audiences and deliver unparalleled ROI.</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Partner With Us</a>
-                    <a href="#" class="btn btn-secondary">View Demo Billboard</a>
+                <div class="hero-text">
+                    <h1>Smart Digital Billboards</h1>
+                    <p>Revolutionizing outdoor advertising in Visakhapatnam with cutting-edge digital billboard technology that captures attention and delivers results.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Partner With Us</a>
+                        <a href="#features" class="btn btn-secondary">View Demo</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-container">
+                        <div class="billboard-img img-1">
+                            <i class="fas fa-ad"></i>
+                            <span>Dynamic Content</span>
+                        </div>
+                        <div class="billboard-img img-2">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Live Analytics</span>
+                        </div>
+                        <div class="billboard-img img-3">
+                            <i class="fas fa-sun"></i>
+                            <span>Energy Efficient</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -751,19 +814,17 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-title">
-                <h2>About NeonBoard</h2>
-            </div>
-            <div class="about-content reveal">
+            <h2>About Our Vision</h2>
+            <div class="about-content">
                 <div class="about-text">
-                    <p>NeonBoard is pioneering the future of outdoor advertising in India, starting with our flagship digital billboard in the heart of Visakhapatnam. Our vision is to transform static cityscapes into dynamic, engaging visual experiences that benefit both advertisers and the community.</p>
-                    <p>Founded in 2023, we're bringing <span class="highlight">cutting-edge LED technology</span> to Vizag's advertising landscape, offering unprecedented flexibility, targeting capabilities, and environmental benefits compared to traditional hoardings.</p>
-                    <p>Our first installation at <span class="highlight">Rushikonda Beach Road</span> has already become a landmark, showcasing how digital billboards can enhance urban environments while delivering superior advertising performance.</p>
+                    <p>At SmartBillboards, we're pioneering the future of outdoor advertising in India's port city of Visakhapatnam. Our mission is to transform static cityscapes into dynamic, engaging visual experiences that benefit both advertisers and the community.</p>
+                    <p>We're proud to introduce Vizag's first smart digital billboard network, combining state-of-the-art LED technology with intelligent content management systems. Our billboards are designed to be energy-efficient, visually striking, and contextually relevant.</p>
+                    <p>Located strategically across Visakhapatnam's busiest intersections and commercial districts, our digital hoardings offer unparalleled visibility and engagement for brands looking to make an impact.</p>
                 </div>
                 <div class="about-image">
-                    <!-- Placeholder for billboard image -->
-                    <div style="width:100%; height:300px; background:linear-gradient(45deg, #0a0a16, #1a1a2e); display:flex; align-items:center; justify-content:center; color:var(--text-muted);">
-                        <i class="fas fa-image" style="font-size: 48px;"></i>
+                    <div class="city-placeholder">
+                        <i class="fas fa-city" style="font-size: 4rem; margin-right: 15px;"></i>
+                        Visakhapatnam Skyline
                     </div>
                 </div>
             </div>
@@ -773,37 +834,56 @@
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Features</h2>
-            </div>
+            <h2>Smart Billboard Features</h2>
             <div class="features-grid">
-                <div class="feature-card reveal">
+                <div class="feature-card card-1 fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <h3>Dynamic Content Scheduling</h3>
-                    <p>Schedule different ads for different times of day, days of the week, or special events with our intuitive dashboard.</p>
+                    <p>Schedule and rotate advertisements based on time of day, audience demographics, and special events for maximum impact.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card card-2 fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Live Analytics</h3>
-                    <p>Monitor campaign performance in real-time with detailed metrics on impressions, engagement, and audience demographics.</p>
+                    <p>Real-time performance tracking with detailed metrics on impressions, engagement, and audience demographics.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card card-3 fade-in">
                     <div class="feature-icon">
-                        <i class="fas fa-laptop"></i>
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3>Remote Management</h3>
-                    <p>Update content, adjust brightness, and monitor system health from anywhere with our cloud-based management platform.</p>
+                    <p>Control and update content across all billboards from anywhere with our secure cloud-based management platform.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card card-4 fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-leaf"></i>
                     </div>
                     <h3>Energy-Efficient LEDs</h3>
-                    <p>Our state-of-the-art LED technology consumes 60% less energy than traditional displays while delivering brighter, more vibrant visuals.</p>
+                    <p>High-brightness, low-power consumption LED displays that maintain visibility even in direct sunlight while reducing energy costs.</p>
+                </div>
+                <div class="feature-card card-5 fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Weather Adaptive</h3>
+                    <p>Automatically adjusts brightness based on ambient light conditions and weather for optimal visibility.</p>
+                </div>
+                <div class="feature-card card-6 fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Content Moderation</h3>
+                    <p>AI-powered content screening to ensure all advertisements meet quality and compliance standards.</p>
+                </div>
+                <div class="feature-card card-7 fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Quick Deployment</h3>
+                    <p>Rapid installation and setup with minimal disruption to surrounding areas and traffic flow.</p>
                 </div>
             </div>
         </div>
@@ -812,117 +892,47 @@
     <!-- Comparison Section -->
     <section id="comparison" class="comparison">
         <div class="container">
-            <div class="section-title">
-                <h2>Market Comparison</h2>
-            </div>
-            <div class="comparison-content reveal">
-                <p>See how digital billboards in Visakhapatnam outperform traditional hoardings in Hyderabad across key metrics:</p>
+            <h2>ROI Comparison</h2>
+            <div class="comparison-content">
+                <p style="text-align: center; margin-bottom: var(--spacing-lg);">Our digital billboards in Visakhapatnam deliver significantly higher returns compared to traditional hoardings in Hyderabad.</p>
                 <div class="comparison-bars">
                     <div class="comparison-item">
-                        <div class="comparison-label">
-                            <span class="city vizag">Visakhapatnam</span>
-                            <span class="city hyderabad">Hyderabad</span>
-                        </div>
+                        <div class="city-name">Visakhapatnam</div>
                         <div class="bar-container">
-                            <div class="bar vizag-bar" data-width="85">
-                                <span class="bar-value">85%</span>
-                            </div>
+                            <div class="bar vizag-bar" data-width="85">85%</div>
                         </div>
+                        <div class="percentage">85%</div>
                     </div>
                     <div class="comparison-item">
-                        <div class="comparison-label">
-                            <span class="city vizag">ROI Increase</span>
-                            <span class="city hyderabad">Traditional ROI</span>
-                        </div>
+                        <div class="city-name">Hyderabad</div>
                         <div class="bar-container">
-                            <div class="bar hyderabad-bar" data-width="65">
-                                <span class="bar-value">65%</span>
-                            </div>
+                            <div class="bar hyderabad-bar" data-width="62">62%</div>
                         </div>
-                    </div>
-                    <div class="comparison-item">
-                        <div class="comparison-label">
-                            <span class="city vizag">Audience Engagement</span>
-                            <span class="city hyderabad">Traditional Engagement</span>
-                        </div>
-                        <div class="bar-container">
-                            <div class="bar vizag-bar" data-width="78">
-                                <span class="bar-value">78%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comparison-item">
-                        <div class="comparison-label">
-                            <span class="city vizag">Content Flexibility</span>
-                            <span class="city hyderabad">Traditional Flexibility</span>
-                        </div>
-                        <div class="bar-container">
-                            <div class="bar hyderabad-bar" data-width="45">
-                                <span class="bar-value">45%</span>
-                            </div>
-                        </div>
+                        <div class="percentage">62%</div>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: var(--spacing-md); font-style: italic;">Based on average ROI data from Q2 2023</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Contact Info Section -->
+    <section id="contact" class="contact-info">
         <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-            </div>
-            <div class="contact-container reveal">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>Ready to transform your advertising strategy? Reach out to our team to discuss partnership opportunities or schedule a demo.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Our Location</h4>
-                                <p>Beach Road, Visakhapatnam, Andhra Pradesh</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Phone Number</h4>
-                                <p>+91 891 234 5678</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email Address</h4>
-                                <p>info@neonboard.in</p>
-                            </div>
-                        </div>
+            <h2>Get In Touch</h2>
+            <p>Reach out to us for partnership opportunities or to learn more about our digital billboard solutions.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
+                    <div class="contact-text">madhavdhavala0@gmail.com</div>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">7207127948</div>
                 </div>
             </div>
         </div>
@@ -932,112 +942,95 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">Neon<span>Board</span></div>
-                    <p class="footer-about">Transforming city skylines with smart digital billboards in Visakhapatnam and beyond.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                <div class="footer-column">
+                    <h3>SmartBillboards</h3>
+                    <p>Transforming city skylines with smart digital billboard technology in Visakhapatnam, India.</p>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="#comparison">Comparison</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#">Digital Billboards</a></li>
-                            <li><a href="#">Content Management</a></li>
-                            <li><a href="#">Analytics & Reporting</a></li>
-                            <li><a href="#">Ad Space Leasing</a></li>
-                            <li><a href="#">Maintenance</a></li>
-                        </ul>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#features">Features</a>
+                    <a href="#comparison">ROI Comparison</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 NeonBoard. All Rights Reserved. | Designed for Visakhapatnam</p>
+                <p>&copy; 2023 SmartBillboards. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Scroll reveal animation
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('load', reveal);
-
-        // Animate comparison bars
-        function animateBars() {
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate comparison bars
             const bars = document.querySelectorAll('.bar');
-            
             bars.forEach(bar => {
                 const width = bar.getAttribute('data-width');
-                bar.style.width = width + '%';
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 500);
             });
-        }
 
-        // Check if comparison section is in view and animate bars
-        function checkComparisonSection() {
-            const comparisonSection = document.getElementById('comparison');
-            const sectionTop = comparisonSection.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
+            // Fade in elements on scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
             
-            if (sectionTop < windowHeight - 100) {
-                animateBars();
-                window.removeEventListener('scroll', checkComparisonSection);
-            }
-        }
-
-        window.addEventListener('scroll', checkComparisonSection);
-        window.addEventListener('load', checkComparisonSection);
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenu.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenu.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 768) {
+                            navLinks.style.display = 'none';
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
