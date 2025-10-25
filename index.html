@@ -40,8 +40,27 @@
             font-family: 'Poppins', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background-color: var(--white);
+            background-color: #f8f9fa;
             overflow-x: hidden;
+            background-image: 
+                linear-gradient(to right, rgba(52, 152, 219, 500), 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(52, 152, 219, 500) 1px, transparent 1px);
+            background-size: 50px 50px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(52, 152, 219, 0.2) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -96,53 +115,100 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--spacing-md);
+            position: relative;
+            z-index: 1;
         }
 
         section {
             padding: var(--spacing-xl) 0;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .disco-button-container {
+            display: inline-block;
+            padding: 15px 25px;
+            border-radius: 50px;
+            background: linear-gradient(
+                45deg,
+                #FF0080,
+                #FF8C00,
+                #40E0D0,
+                #FF0080,
+                #7B68EE,
+                #00CED1,
+                #FF1493,
+                #FFD700
+            );
+            background-size: 400% 400%;
+            animation: discoGradient 6s ease infinite;
+        }
+
+        @keyframes discoGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 50% 100%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 50% 0%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            border-radius: var(--border-radius);
+            border-radius: 50px;
             font-weight: 500;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
             border: none;
             font-size: 1rem;
+            margin: 0 8px;
         }
 
         .btn-primary {
-            background-color: var(--accent);
-            color: var(--white);
+            background-color: var(--white);
+            color: var(--primary);
+            border: 2px solid transparent;
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-light);
-            transform: translateY(-2px);
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
         }
 
         .btn-secondary {
             background-color: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
+            color: var(--white);
+            border: 2px solid var(--white);
         }
 
         .btn-secondary:hover {
-            background-color: var(--accent);
-            color: var(--white);
-            transform: translateY(-2px);
+            background-color: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--white);
+            background-color: var(--prima);
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             z-index: 1000;
             padding: var(--spacing-sm) 0;
@@ -155,48 +221,106 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--primary);
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-wrapper {
+            padding: 12px 20px;
+            border-radius: 50px;
+            background: linear-gradient(
+                45deg,
+                #FF0080,
+                #FF8C00,
+                #40E0D0,
+                #FF0080,
+                #7B68EE,
+                #00CED1,
+                #FF1493,
+                #FFD700
+            );
+            background-size: 400% 400%;
+            animation: discoGradient 6s ease infinite;
+            position: relative;
+            z-index: 2;
         }
 
         .nav-links {
             display: flex;
-            gap: var(--spacing-md);
+            gap: 12px;
+            list-style: none;
         }
 
-        .nav-links a {
-            font-weight: 500;
+        .nav-item {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            padding: 8px 20px;
             position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
 
-        .nav-links a:after {
+        .nav-item a {
+            font-weight: 500;
+            color: var(--primary);
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item::before {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
+            top: 0;
+            left: -150%;
+            width: 150%;
+            height: 100%;
+            background: linear-gradient(-45deg, 
+                transparent 0%, 
+                transparent 40%,
+                rgba(255, 255, 255, 0.6) 50%, 
+                transparent 60%,
+                transparent 100%);
+            transition: left 0.6s ease;
+            pointer-events none;
+            z-index: 1;
         }
 
-        .nav-links a:hover:after {
-            width: 100%;
+        .nav-item:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .nav-item:hover::before {
+            left: 150%;
+        }
+
+        .nav-item:hover a {
+            color: var(--white);
         }
 
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
+            position: relative;
+            z-index: 2;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            background: rgba(236, 240, 241, 0.8);
             padding-top: 80px;
         }
 
@@ -225,7 +349,8 @@
 
         .hero-buttons {
             display: flex;
-            gap: var(--spacing-sm);
+            gap: 0;
+            justify-content: flex-start;
         }
 
         .hero-image {
@@ -254,11 +379,10 @@
             align-items: center;
             color: var(--white);
             font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             padding: 20px;
             text-align: center;
-            box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);
         }
 
         .img-1 {
@@ -268,7 +392,6 @@
             animation: float 6s ease-in-out infinite;
             z-index: 3;
             background-size: cover;
-            
         }
 
         .img-2 {
@@ -294,9 +417,8 @@
             margin-bottom: 15px;
         }
 
-        /* About Section */
         .about {
-            background-color: var(--light);
+            background-color: rgba(236, 240, 241, 0.8);
         }
 
         .about-content {
@@ -330,9 +452,8 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Features Section - Bento Layout */
         .features {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.8);
             position: relative;
             z-index: 1;
         }
@@ -340,181 +461,459 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 1fr);
             gap: 20px;
-            height: 600px;
             margin-bottom: var(--spacing-lg);
             position: relative;
             z-index: 2;
+            padding: 30px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            animation: discoGlow 5s ease-in-out infinite;
         }
 
         .feature-card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            min-height: 280px;
+            cursor: pointer;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: var(--accent);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover:before {
-            transform: scaleX(1);
+            transform: translateY(-15px) scale(1.03) rotate(-2deg);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: var(--spacing-sm);
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .feature-card h3 {
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        /* Bento grid positioning with highlighted layout */
+        .feature-card:hover h3 {
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--secondary);
+        }
+
         .card-1 {
             grid-column: 1 / 3;
-            grid-row: 1 / 2;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, #FFE5E5 0%, #FFD1DC 100%);
+        }
+
+        .card-1 .feature-icon {
+            color: #FF6B9D;
         }
 
         .card-2 {
             grid-column: 3 / 5;
-            grid-row: 1 / 2;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+        }
+
+        .card-2 .feature-icon {
+            color: #00ACC1;
         }
 
         .card-3 {
             grid-column: 1 / 2;
-            grid-row: 2 / 4;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFF59D 100%);
+        }
+
+        .card-3 .feature-icon {
+            color: #FBC02D;
         }
 
         .card-4 {
             grid-column: 2 / 4;
-            grid-row: 2 / 3;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, #E1BEE7 0%, #CE93D8 100%);
+        }
+
+        .card-4 .feature-icon {
+            color: #8E24AA;
         }
 
         .card-5 {
             grid-column: 4 / 5;
-            grid-row: 2 / 3;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, #C5E1A5 0%, #AED581 100%);
+        }
+
+        .card-5 .feature-icon {
+            color: #558B2F;
         }
 
         .card-6 {
-            grid-column: 2 / 3;
-            grid-row: 3 / 4;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            grid-column: 1 / 2;
+            background: linear-gradient(135deg, #FFCCBC 0%, #FFAB91 100%);
+        }
+
+        .card-6 .feature-icon {
+            color: #E64A19;
         }
 
         .card-7 {
-            grid-column: 3 / 5;
-            grid-row: 3 / 4;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
+            grid-column: 2 / 5;
+            background: linear-gradient(135deg, #B3E5FC 0%, #81D4FA 100%);
         }
 
-        /* Comparison Section */
-        .comparison {
-            background-color: var(--light);
-            position: relative;
-            z-index: 1;
+        .card-7 .feature-icon {
+            color: #0277BD;
         }
 
-        .comparison-content {
-            max-width: 800px;
+        /* Analytics Flowchart Section - Solid Colors with 3D Tilt */
+        .analytics-process {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .flowchart-container {
+            max-width: 1100px;
             margin: 0 auto;
+            padding: var(--spacing-md);
+            perspective: 2000px;
         }
 
-        .comparison-bars {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
+        .flowchart {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 60px;
+            position: relative;
+            transform-style: preserve-3d;
         }
 
-        .comparison-item {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .city-name {
-            width: 120px;
-            font-weight: 500;
-        }
-
-        .bar-container {
-            flex: 1;
-            height: 30px;
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .bar {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10px;
+        .flow-step {
+            padding: 2rem;
+            border-radius: 20px;
             color: var(--white);
-            font-weight: 500;
-            transition: width 1.5s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
         }
 
-        .vizag-bar {
-            background-color: var(--accent);
-            width: 0;
+        /* Strong 3D tilt - Alternate tilts for left and right columns */
+        .flow-step:nth-child(odd) {
+            transform: perspective(1000px) rotateY(-15deg) rotateX(3deg);
         }
 
-        .hyderabad-bar {
-            background-color: var(--secondary);
-            width: 0;
+        .flow-step:nth-child(even) {
+            transform: perspective(1000px) rotateY(15deg) rotateX(3deg);
         }
 
-        .percentage {
-            width: 50px;
-            text-align: right;
-            font-weight: 500;
+        /* On hover - straighten and lift */
+        .flow-step:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-12px) scale(1.03) !important;
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.6);
         }
 
-        /* Contact Info Section */
+        /* Solid decent colors for flowchart */
+        .flow-step:nth-child(1) {
+            background: #667eea;
+        }
+
+        .flow-step:nth-child(2) {
+            background: #f093fb;
+        }
+
+        .flow-step:nth-child(3) {
+            background: #4facfe;
+        }
+
+        .flow-step:nth-child(4) {
+            background: #43e97b;
+        }
+
+        .flow-step:nth-child(5) {
+            background: #fa709a;
+        }
+
+        .flow-step:nth-child(6) {
+            background: #764ba2;
+        }
+
+        /* CORRECTED ARROW POSITIONS */
+
+        /* Phase 1 → Phase 2: Right horizontal arrow */
+        .flow-step:nth-child(1)::after {
+            content: '\f061';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            right: -50px;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: var(--accent);
+            animation: bounceHorizontal 2s infinite;
+        }
+
+        /* Phase 2 → Phase 3: Down arrow */
+        .flow-step:nth-child(2)::after {
+            content: '\f063';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: var(--accent);
+            animation: bounce 2s infinite;
+        }
+
+        /* Phase 3 → Phase 4: Left horizontal arrow */
+        .flow-step:nth-child(4)::after {
+            content: '\f061';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: -50px;
+            transform: translateY(-50%) scaleX(-1);
+            font-size: 2.5rem;
+            color: var(--accent);
+            animation: bounceHorizontalReverse 2s infinite;
+        }
+
+        /* Phase 4 → Phase 5: Down arrow */
+        .flow-step:nth-child(3)::after {
+            content: '\f063';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: var(--accent);
+            animation: bounce 2s infinite;
+        }
+
+        /* Phase 5 → Phase 6: Right horizontal arrow */
+        .flow-step:nth-child(5)::after {
+            content: '\f061';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            right: -50px;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: var(--accent);
+            animation: bounceHorizontal 2s infinite;
+        }
+
+        /* Phase 6: No arrow (end of flow) */
+        .flow-step:nth-child(6)::after {
+            display: none;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .step-title i {
+            font-size: 1.8rem;
+            transition: transform 0.4s ease;
+        }
+
+        .flow-step:hover .step-title i {
+            transform: scale(1.4) rotate(15deg);
+        }
+
+        .step-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* PERFORMANCE SECTION - Individual padded containers for each bar */
+/* PERFORMANCE SECTION - Padded container for ONLY progress bar */
+.comparison {
+    background-color: rgba(236, 240, 241, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+.comparison-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.comparison-bars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.comparison-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.billboard-type {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+.billboard-type i {
+    font-size: 1.5rem;
+}
+
+.bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Padded container for ONLY the progress bar (no percentage label) */
+.progress-bar-holder {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 60px;
+    padding: var(--spacing-sm);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.progress-bar-holder:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.bar-container {
+    height: 50px;
+    background-color: rgba(200, 200, 200, 0.3);
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: width 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border-radius: 50px;
+}
+
+/* Animated Gradient for Digital Billboards */
+.digital-bar {
+            background: linear-gradient(
+                45deg,
+                #FF0080,
+                #FF8C00,
+                #40E0D0,
+                #FF0080,
+                #7B68EE,
+                #00CED1,
+                #FF1493,
+                #FFD700
+            );
+    background-size: 300% 100%;
+    animation: discoGradient 6s ease infinite;
+    width: 0;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+}
+
+/* Animated Gradient for Traditional Billboards */
+.traditional-bar {
+            background: linear-gradient(
+                45deg,
+                #FF0080,
+                #FF8C00,
+                #40E0D0,
+                #FF0080,
+                #7B68EE,
+                #00CED1,
+                #FF1493,
+                #FFD700
+            );
+    background-size: 300% 100%;
+    animation: discoGradient 8s ease infinite;
+    width: 0;
+    box-shadow: 0 0 15px rgba(142, 158, 171, 0.4);
+}
+
+.percentage-label {
+    min-width: 80px;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--dark);
+}
+
+        .metric-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: var(--border-radius);
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: var(--spacing-sm);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
         .contact-info {
             text-align: center;
             padding: var(--spacing-lg) 0;
-            background-color: var(--light);
+            /* background-color: rgba(236, 240, 241, 0.8); */
         }
 
         .contact-details {
@@ -541,11 +940,12 @@
             font-weight: 500;
         }
 
-        /* Footer */
         footer {
             background-color: var(--dark);
             color: var(--white);
             padding: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -600,7 +1000,6 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -624,6 +1023,33 @@
             }
         }
 
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes bounceHorizontal {
+            0%, 100% {
+                transform: translateY(-50%) translateX(0);
+            }
+            50% {
+                transform: translateY(-50%) translateX(10px);
+            }
+        }
+
+        @keyframes bounceHorizontalReverse {
+            0%, 100% {
+                transform: translateY(-50%) scaleX(-1) translateX(0);
+            }
+            50% {
+                transform: translateY(-50%) scaleX(-1) translateX(10px);
+            }
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -635,7 +1061,7 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
+        /* Mobile: Remove 3D effects */
         @media (max-width: 992px) {
             h1 {
                 font-size: 3.5rem;
@@ -660,13 +1086,57 @@
             
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, 1fr);
-                height: auto;
+                padding: 20px;
             }
             
             .card-1, .card-2, .card-3, .card-4, .card-5, .card-6, .card-7 {
-                grid-column: auto;
-                grid-row: auto;
+                grid-column: auto !important;
+            }
+
+            .flowchart-container {
+                perspective: none !important;
+            }
+
+            .flowchart {
+                grid-template-columns: 1fr;
+                gap: 60px 20px;
+                transform-style: flat !important;
+            }
+
+            /* Remove ALL 3D tilt on mobile/tablet */
+            .flow-step,
+            .flow-step:nth-child(odd),
+            .flow-step:nth-child(even) {
+                transform: none !important;
+            }
+
+            .flow-step:hover {
+                transform: translateY(-8px) scale(1.02) !important;
+            }
+            
+            .flow-step::after {
+                content: '\f063' !important;
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                position: absolute;
+                bottom: -50px !important;
+                left: 50% !important;
+                right: auto !important;
+                top: auto !important;
+                transform: translateX(-50%) !important;
+                animation: bounce 2s infinite !important;
+            }
+            
+            .flow-step:nth-child(6)::after {
+                display: none;
+            }
+
+            .metric-list {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-bar-holder {
+                padding: var(--spacing-sm);
             }
         }
 
@@ -678,23 +1148,51 @@
             h2 {
                 font-size: 1.8rem;
             }
+
+            .logo {
+                font-size: 1.5rem;
+            }
             
-            .nav-links {
+            .nav-wrapper {
                 display: none;
             }
             
             .mobile-menu {
                 display: block;
             }
+
+            .nav-wrapper.active {
+                display: block;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                left: 20px;
+                padding: 15px;
+                border-radius: 25px;
+            }
+
+            .nav-wrapper.active .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
             
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
+
+            .disco-button-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                max-width: 300px;
+            }
             
             .btn {
                 width: 100%;
                 max-width: 250px;
+                margin: 8px 0;
             }
             
             section {
@@ -703,7 +1201,19 @@
             
             .features-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto;
+                padding: 15px;
+            }
+
+            .flow-step {
+                padding: 1.5rem;
+            }
+
+            .step-title {
+                font-size: 1.2rem;
+            }
+
+            .step-description {
+                font-size: 0.9rem;
             }
             
             .contact-details {
@@ -734,6 +1244,14 @@
                 bottom: 15%;
                 right: 20%;
             }
+
+            .bar-container {
+                height: 40px;
+            }
+
+            .percentage-label {
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -744,13 +1262,17 @@
             h2 {
                 font-size: 1.5rem;
             }
+
+            .logo {
+                font-size: 1.3rem;
+            }
             
             .container {
                 padding: 0 var(--spacing-sm);
             }
             
             .feature-card {
-                padding: var(--spacing-md);
+                padding: 2rem 1.5rem;
             }
             
             .hero-image {
@@ -765,18 +1287,20 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">SvetBoards</a>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#comparison">ROI</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+                <a href="#" class="logo">SwetGrid</a>
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li class="nav-item"><a href="#home">Home</a></li>
+                        <li class="nav-item"><a href="#about">About</a></li>
+                        <li class="nav-item"><a href="#features">Features</a></li>
+                        <li class="nav-item"><a href="#analytics">Analytics</a></li>
+                        <li class="nav-item"><a href="#comparison">Performance</a></li>
+                        <li class="nav-item"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -784,7 +1308,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
@@ -792,25 +1315,23 @@
                     <h1>Smart Digital Billboards</h1>
                     <p>Revolutionizing outdoor advertising in Visakhapatnam with cutting-edge digital billboard technology that captures attention and delivers results.</p>
                     <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">Partner With Us</a>
-                        <a href="#features" class="btn btn-secondary">View Demo</a>
+                        <div class="disco-button-container">
+                            <a href="#contact" class="btn btn-primary">Partner With Us</a>
+                            <a href="#features" class="btn btn-secondary">View Demo</a>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="image-container">
-                        <div class="billboard-img img-1">
-                        </div>
-                        <div class="billboard-img img-2">
-                        </div>
-                        <div class="billboard-img img-3">
-                        </div>
+                        <div class="billboard-img img-1"></div>
+                        <div class="billboard-img img-2"></div>
+                        <div class="billboard-img img-3"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2>About Our Vision</h2>
@@ -830,7 +1351,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
             <h2>Smart Billboard Features</h2>
@@ -888,34 +1408,147 @@
         </div>
     </section>
 
-    <!-- Comparison Section -->
-    <section id="comparison" class="comparison">
+    <section id="analytics" class="analytics-process">
         <div class="container">
-            <h2>ROI Comparison</h2>
-            <div class="comparison-content">
-                <p style="text-align: center; margin-bottom: var(--spacing-lg);">Our digital billboards in Visakhapatnam deliver significantly higher returns compared to traditional hoardings in Hyderabad.</p>
-                <div class="comparison-bars">
-                    <div class="comparison-item">
-                        <div class="city-name">Visakhapatnam</div>
-                        <div class="bar-container">
-                            <div class="bar vizag-bar" data-width="85">85%</div>
+            <h2>Data Analytics Process</h2>
+            <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--secondary);">
+                Our comprehensive 6-phase analytics system transforms billboard advertising into data-driven marketing
+            </p>
+            <div class="flowchart-container">
+                <div class="flowchart">
+                    <div class="flow-step fade-in">
+                        <div class="step-title">
+                            <i class="fas fa-database"></i>
+                            Phase 1: Data Collection
                         </div>
-                        <div class="percentage">85%</div>
+                        <div class="step-description">
+                            AI-powered cameras, motion sensors, and mobile location tracking capture real-time audience data. We collect impressions, demographics (age, gender), traffic patterns, and environmental conditions including weather and time-of-day metrics.
+                        </div>
                     </div>
-                    <div class="comparison-item">
-                        <div class="city-name">Hyderabad</div>
-                        <div class="bar-container">
-                            <div class="bar hyderabad-bar" data-width="62">62%</div>
+                    
+                    <div class="flow-step fade-in">
+                        <div class="step-title">
+                            <i class="fas fa-filter"></i>
+                            Phase 2: Data Processing
                         </div>
-                        <div class="percentage">62%</div>
+                        <div class="step-description">
+                            Raw data is cleaned, validated, and structured using machine learning algorithms. Mobile Advertising IDs (MAIDs) are matched with location data, achieving 63% match rates for Android and 58% for iOS devices within 500-800 feet of billboards.
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step fade-in">
+                        <div class="step-title">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Phase 4: Real-Time Dashboard
+                        </div>
+                        <div class="step-description">
+                            Live performance monitoring displays impression counts, audience demographics, engagement rates, and cost-per-thousand (CPM) metrics. Advertisers access comprehensive reports showing campaign effectiveness across all billboard locations simultaneously.
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step fade-in">
+                        <div class="step-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Phase 3: Analysis & Insights
+                        </div>
+                        <div class="step-description">
+                            Advanced analytics engine calculates key metrics: dwell time, engagement rates, conversion tracking, and impression multipliers. We analyze QR code scans, website visits, and app activity to measure direct response and attribution.
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step fade-in">
+                        <div class="step-title">
+                            <i class="fas fa-sync-alt"></i>
+                            Phase 5: Optimization
+                        </div>
+                        <div class="step-description">
+                            AI-driven content scheduling adjusts ad displays based on audience patterns and performance data. Dynamic optimization considers peak traffic hours, weather conditions, and real-time engagement to maximize campaign impact and ROI.
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step fade-in">
+                        <div class="step-title">
+                            <i class="fas fa-trophy"></i>
+                            Phase 6: Results & Attribution
+                        </div>
+                        <div class="step-description">
+                            Comprehensive reporting measures brand lift (14% increase over 180 days), store visit attribution (28% increase within 90 days), branded search growth (17% over 120 days), and overall conversion rates. Quarterly brand lift studies validate long-term campaign effectiveness.
+                        </div>
                     </div>
                 </div>
-                <p style="text-align: center; margin-top: var(--spacing-md); font-style: italic;">Based on average ROI data from Q2 2023</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Info Section -->
+<section id="comparison" class="comparison">
+    <div class="container">
+        <h2>Performance & Success Metrics</h2>
+        <div class="comparison-content">
+            <p style="text-align: center; margin-bottom: var(--spacing-md); font-size: 1.1rem;">
+                Digital billboards dramatically outperform traditional static billboards across all key metrics
+            </p>
+            
+            <div class="comparison-bars">
+                <!-- Digital Billboards -->
+                <div class="comparison-item">
+                    <div class="billboard-type">
+                        <i class="fas fa-tv" style="color: #667eea;"></i>
+                        <span>Smart Digital Billboards</span>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="progress-bar-holder">
+                            <div class="bar-container">
+                                <div class="bar digital-bar" data-width="92">92%</div>
+                            </div>
+                        </div>
+                        <div class="percentage-label">92%</div>
+                    </div>
+                </div>
+
+                <!-- Traditional Billboards -->
+                <div class="comparison-item">
+                    <div class="billboard-type">
+                        <i class="fas fa-rectangle-ad" style="color: #8E9EAB;"></i>
+                        <span>Traditional Static Billboards</span>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="progress-bar-holder">
+                            <div class="bar-container">
+                                <div class="bar traditional-bar" data-width="58">58%</div>
+                            </div>
+                        </div>
+                        <div class="percentage-label">58%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-list">
+                <div class="metric-item">
+                    <div class="metric-value">3.8x</div>
+                    <div class="metric-label">Higher Engagement Rate</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">5.2x</div>
+                    <div class="metric-label">Better Brand Recall</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">68%</div>
+                    <div class="metric-label">Increased Conversions</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">24/7</div>
+                    <div class="metric-label">Real-Time Updates</div>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: var(--spacing-lg); font-style: italic; color: var(--secondary);">
+                Based on comprehensive industry studies across 500+ campaigns in 2024
+            </p>
+        </div>
+    </div>
+</section>
+
+
     <section id="contact" class="contact-info">
         <div class="container">
             <h2>Get In Touch</h2>
@@ -937,7 +1570,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -950,7 +1582,8 @@
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#features">Features</a>
-                    <a href="#comparison">ROI Comparison</a>
+                    <a href="#analytics">Analytics</a>
+                    <a href="#comparison">Performance</a>
                 </div>
                 <div class="footer-column">
                     <h3>Follow Us</h3>
@@ -969,9 +1602,7 @@
     </footer>
 
     <script>
-        // Scroll animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate comparison bars
             const bars = document.querySelectorAll('.bar');
             bars.forEach(bar => {
                 const width = bar.getAttribute('data-width');
@@ -980,7 +1611,6 @@
                 }, 500);
             });
 
-            // Fade in elements on scroll
             const fadeElements = document.querySelectorAll('.fade-in');
             
             const fadeInOnScroll = function() {
@@ -994,21 +1624,16 @@
                 });
             };
             
-            // Check on load
             fadeInOnScroll();
-            
-            // Check on scroll
             window.addEventListener('scroll', fadeInOnScroll);
             
-            // Mobile menu toggle
             const mobileMenu = document.querySelector('.mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
+            const navWrapper = document.querySelector('.nav-wrapper');
             
             mobileMenu.addEventListener('click', function() {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navWrapper.classList.toggle('active');
             });
             
-            // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1023,9 +1648,8 @@
                             behavior: 'smooth'
                         });
                         
-                        // Close mobile menu if open
                         if (window.innerWidth <= 768) {
-                            navLinks.style.display = 'none';
+                            navWrapper.classList.remove('active');
                         }
                     }
                 });
