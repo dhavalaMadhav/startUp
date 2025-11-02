@@ -162,7 +162,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.442);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 2px solid rgb(0, 0, 0);
@@ -1363,6 +1363,23 @@
 
         /* MOBILE: 768px and below */
         @media (max-width: 768px) {
+                .percentage-label {
+        display: none;
+    }
+
+    /* Make bar wrapper full width */
+    .bar-wrapper {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+
+    /* Make progress bar holder full width */
+    .progress-bar-holder {
+        flex: 1;
+        width: 100%;
+    }
+
             h1 {
                 font-size: 2.8rem;
             }
@@ -1388,10 +1405,10 @@
                 right: 0;
                 width: 100%;
                 padding: 20px;
-                background-color: rgba(255, 255, 255, 0.95);
+                background-color: rgba(255, 255, 255, 0.442);
                 backdrop-filter: blur(15px);
                 -webkit-backdrop-filter: blur(15px);
-                border-radius: 0 0 15px 15px;
+                /* border-radius: 0 0 15px 15px; */
                 border: 2px solid rgba(0, 0, 0, 0.1);
                 z-index: 999;
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -1463,7 +1480,7 @@
             }
 
             .bar-container {
-                height: 40px;
+                height: 60px;
             }
 
             .percentage-label {
