@@ -147,7 +147,7 @@
         background-color: var(--white);
         color: var(--dark);
         border: 2px solid var(--dark);
-        box-shadow: 4px 4px 0px rgba(26, 37, 47, 0.3);
+        box-shadow: 6px 6px 0px rgba(26, 37, 47, 0.3);
     }
 
     .btn:hover {
@@ -155,7 +155,7 @@
         /* color: var(--white); */
         border-color: var(--dark);
         transform: translateY(-2px);
-        box-shadow: 6px 6px 0px rgba(26, 37, 47, 1);
+        box-shadow: 10px 10px 0px rgba(26, 37, 47, 1);
     }
 
 
@@ -312,7 +312,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* background-color: rgba(0, 0, 0, 0.3);   */
+    background-color: rgba(200, 230, 201, 0.3);
         z-index: 1;
     }
 
@@ -326,7 +326,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-xl);
-        align-items: start;  /* Change from 'center' to 'start' */
+        align-items: center;  /* Change from 'center' to 'start' */
         padding-top: 0px;  /* Add top padding to move everything up */
     }
 
@@ -487,10 +487,10 @@
                 min-height: 280px;
                 cursor: pointer;    
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0);
 
                                 border: 2px solid var(--dark);
-                                    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15); /* Default shadow like button */
+                                    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15); /* Default shadow like button */
 
 
 
@@ -498,7 +498,7 @@
 
             .feature-card:hover {
             transform: translateY(-2px);
-            box-shadow: 6px 6px 0px rgba(26, 37, 47, 1);
+            box-shadow: 10px 10px 0px rgba(26, 37, 47, 1);
 
             }
 
@@ -620,10 +620,10 @@
                 position: relative;
                 transform-style: preserve-3d;
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: 4px 4px 0px rgba(0, 0, 0, 0);
+                box-shadow: 6px 6px 0px rgba(0, 0, 0, 0);
 
                                 border: 2px solid var(--dark);
-                                    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15); /* Default shadow like button */
+                                    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15); /* Default shadow like button */
 
             }
 
@@ -641,7 +641,7 @@
             .flow-step:hover {
                 
             transform: translateY(-2px);
-            box-shadow: 6px 6px 0px rgba(26, 37, 47, 1);
+            box-shadow: 10px 10px 0px rgba(26, 37, 47, 1);
             }
 
             /* Solid decent colors for flowchart */
@@ -824,7 +824,7 @@
             }
 
             .progress-bar-holder:hover {
-                box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+                box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
                 transform: translateY(-3px);
             }
 
@@ -977,7 +977,7 @@
             .social-links a:hover {
                 background-color: var(--accent);
                 transform: translateY(-3px);
-                box-shadow: 4px 4px 0px rgba(52, 152, 219, 0.3);
+                box-shadow: 6px 6px 0px rgba(52, 152, 219, 0.3);
             }
 
             .footer-bottom {
@@ -1109,7 +1109,7 @@
 
                 .flow-step:hover {
                     transform: translateY(-8px) scale(1.02) !important;
-                    box-shadow: 4px 4px 0px rgba(102, 126, 234, 0.6);
+                    box-shadow: 6px 6px 0px rgba(102, 126, 234, 0.6);
                 }
                 
                 .flow-step::after {
@@ -1325,6 +1325,7 @@
     font-weight: 700;
     letter-spacing: -0.5px;
     position: relative;
+    text-transform: uppercase;
 }
 
 .services-showcase h2::after {
@@ -1335,10 +1336,10 @@
     transform: translateX(-50%);
     width: 150px;
     height: 25px;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0.3) 60%, transparent 100%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.41) 20%, rgba(255, 255, 255, 0.147) 60%, transparent 100%);
     filter: blur(2px);
     z-index: 100;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); */
 }
 
 .services-showcase > .container {
@@ -1398,7 +1399,7 @@
 
 .service-card h3 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: bolder;
     color: var(--dark);
     transition: color 0.3s ease;
     margin: 0;
@@ -1471,14 +1472,15 @@
     <nav class="navbar">
         <a href="#" class="logo">SwetGrid</a>
         <div class="nav-wrapper">
-            <ul class="nav-links">
-                            <li class="nav-item"><a href="#home">Home</a></li>
-                            <li class="nav-item"><a href="#about">About</a></li>
-                            <li class="nav-item"><a href="#features">Features</a></li>
-                            <li class="nav-item"><a href="#analytics">Analytics</a></li>
-                            <li class="nav-item"><a href="#comparison">Performance</a></li>
-                            <li class="nav-item"><a href="#contact">Contact</a></li>
-                        </ul>
+<ul class="nav-links">
+    <li class="nav-item"><a href="#home">Home</a></li>
+    <li class="nav-item"><a href="#services">Services</a></li>
+    <li class="nav-item"><a href="#about">About</a></li>
+    <li class="nav-item"><a href="#features">Features</a></li>
+    <li class="nav-item"><a href="#analytics">Analytics</a></li>
+    <li class="nav-item"><a href="#comparison">Performance</a></li>
+    <li class="nav-item"><a href="#contact">Contact</a></li>
+</ul>
         </div>
         <a href="#contact" class="btn header-btn">Call Us</a>
         <div class="mobile-menu">
@@ -1523,7 +1525,7 @@
             </div>
         </section>
 
-        <section class="services-showcase">
+<section id="services" class="services-showcase">
     <div class="container">
         <div class="services-header">
             <i class="fas fa-briefcase"></i>
