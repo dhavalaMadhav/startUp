@@ -289,15 +289,39 @@
             display: block;
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION - FIXED FOR MOBILE */
         .hero {
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(200, 230, 201, 0.3);
+            z-index: 1;
         }
 
         .hero .container {
             position: relative;
             z-index: 2;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .hero-content {
@@ -306,10 +330,14 @@
             gap: var(--spacing-xl);
             align-items: center;
             padding-top: 0px;
+            width: 100%;
+            max-width: 100%;
         }
 
         .hero-text {
             animation: fadeIn 1s ease;
+            width: 100%;
+            max-width: 100%;
         }
 
         .hero-text h1 {
@@ -338,6 +366,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
         .image-container {
@@ -354,6 +383,7 @@
             height: 100%;
             object-fit: contain;
             animation: float 6s ease-in-out infinite;
+            max-width: 100%;
         }
 
 /* ABOUT SECTION HEADER */
@@ -1633,7 +1663,6 @@
         }
 
         /* MOBILE: 768px and below */
-/* MOBILE: 768px and below */
 @media (max-width: 768px) {
     * {
         box-sizing: border-box;
@@ -1715,28 +1744,60 @@
         padding: 2rem 0;
     }
 
+    /* HERO SECTION MOBILE FIX */
     .hero {
         padding-top: 100px;
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
     }
 
     .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+        word-wrap: break-word;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        word-wrap: break-word;
     }
 
     .hero-buttons, .button-container {
         flex-direction: column;
         align-items: center;
         width: 100%;
+        max-width: 100%;
     }
 
     .btn {
         width: 100%;
         max-width: 250px;
+        box-sizing: border-box;
     }
 
     .hero-image {
         height: 300px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .features-grid {
@@ -1861,7 +1922,6 @@
     }
 }
 
-
 @media (max-width: 576px) {
     .container {
         padding: 0 0.8rem;
@@ -1916,64 +1976,46 @@
         max-width: 100%;
     }
 
-    /* MUCH BIGGER HERO TITLE */
-    h1 {
-        font-size: 2.8rem;
-        line-height: 1;
-        margin-bottom: 1rem;
-        font-weight: 800;
-    }
-
-    /* BIGGER SECTION TITLES */
-    h2,
-    .services-showcase h2,
-    .features h2,
-    .analytics-process h2,
-    .comparison h2 {
-        font-size: 2.2rem !important;
-        margin-bottom: 0.8rem;
-        padding-bottom: 0.6rem;
-        font-weight: 700;
-    }
-
-    p {
-        font-size: 0.85rem;
-        line-height: 1.3;
-    }
-
+    /* HERO SECTION ULTRA MOBILE FIX */
     .hero {
         padding-top: 70px;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .hero .container {
+        padding: 0 0.5rem;
     }
 
     .hero-content {
         grid-template-columns: 1fr;
         gap: 0.8rem;
         padding: 0;
+        width: 100%;
     }
 
     /* MUCH BIGGER HERO TEXT */
+    .hero-text {
+        width: 100%;
+        padding: 0;
+    }
+
     .hero-text h1 {
         font-size: 3.5rem;
         margin-bottom: 0.8rem;
         font-weight: 800;
         line-height: 1;
+        word-wrap: break-word;
     }
 
     .hero-text p {
         font-size: 1rem;
         margin-bottom: 1.5rem;
+        word-wrap: break-word;
     }
 
     .hero-image {
-        /* height: 180px;
-        max-height: 180px;
-        margin-top:30px; */
         display: none;
-    }
-
-    .billboard-main-image {
-        max-width: 100%;
-        max-height: 100%;
     }
 
     /* EQUAL SIZED BUTTONS */
@@ -2002,6 +2044,32 @@
         padding: 12px 20px;
         font-size: 0.8rem;
         text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* MUCH BIGGER HERO TITLE */
+    h1 {
+        font-size: 2.8rem;
+        line-height: 1;
+        margin-bottom: 1rem;
+        font-weight: 800;
+    }
+
+    /* BIGGER SECTION TITLES */
+    h2,
+    .services-showcase h2,
+    .features h2,
+    .analytics-process h2,
+    .comparison h2 {
+        font-size: 2.2rem !important;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.6rem;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 0.85rem;
+        line-height: 1.3;
     }
 
     section {
@@ -2188,31 +2256,13 @@
         max-width: 100%;
     }
 
-    h1 {
-        font-size: 3.2rem;
-        line-height: 0.95;
-        margin-bottom: 0.8rem;
-        font-weight: 800;
-    }
-
-    h2,
-    .services-showcase h2,
-    .features h2,
-    .analytics-process h2,
-    .comparison h2 {
-        font-size: 2.6rem !important;
-        margin-bottom: 0.6rem;
-        padding-bottom: 0.4rem;
-        font-weight: 700;
-    }
-
-    p {
-        font-size: 0.8rem;
-        line-height: 1.2;
-    }
-
     .hero {
         padding-top: 65px;
+        width: 100%;
+    }
+
+    .hero .container {
+        padding: 0 0.4rem;
     }
 
     .hero-text h1 {
@@ -2242,6 +2292,29 @@
         max-width: 200px;
         padding: 10px 16px;
         font-size: 0.7rem;
+    }
+
+    h1 {
+        font-size: 3.2rem;
+        line-height: 0.95;
+        margin-bottom: 0.8rem;
+        font-weight: 800;
+    }
+
+    h2,
+    .services-showcase h2,
+    .features h2,
+    .analytics-process h2,
+    .comparison h2 {
+        font-size: 2.6rem !important;
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.4rem;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 0.8rem;
+        line-height: 1.2;
     }
 
     section {
@@ -2390,7 +2463,7 @@
 
 /* TICKER SECTION */
 .ticker-section {
-            background: rgb(255, 208, 66);
+    background: rgb(255, 208, 66);
     border-top: 2px solid var(--dark);
     border-bottom: 2px solid var(--dark);
     padding: 2rem 0;
@@ -2530,7 +2603,9 @@
         </div>
     </header>
 
-    <section id="home" class="hero">
+    <section id="home" class="hero">        
+        <div class="video-overlay"></div>
+
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -2767,7 +2842,6 @@
         </div>
     </div>
 </section>
-
 
     <section id="analytics" class="analytics-process">
         <div class="container">
